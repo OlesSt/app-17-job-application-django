@@ -4,6 +4,7 @@ from .models import Form
 from django.contrib import messages
 from django.core.mail import EmailMessage
 
+
 def index(request):
     if request.method == "POST":
         form = ApplicationForm(request.POST)
@@ -15,10 +16,10 @@ def index(request):
             occupation = form.cleaned_data['occupation']
 
             Form.objects.create(first_name=first_name,
-                               last_name=last_name,
-                               email=email,
-                               date=date,
-                               occupation=occupation)
+                                last_name=last_name,
+                                email=email,
+                                date=date,
+                                occupation=occupation)
 
             message_body = f"A new job application submitted, {first_name}"
             email_message = EmailMessage("Application form", message_body)
